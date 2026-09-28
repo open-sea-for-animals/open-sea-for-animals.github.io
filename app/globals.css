@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+::selection { background: hsl(var(--primary) / .32); }
+
+@layer components {
+  .site-container { @apply mx-auto w-full max-w-6xl px-5 sm:px-7; }
+  .eyebrow { @apply mb-3 text-xs font-black uppercase tracking-[.24em] text-primary; }
+  .content-card { @apply rounded-theme border border-border bg-card/70 p-6 text-muted-foreground shadow-theme; }
+  .button-primary { @apply inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-black text-primary-foreground shadow-theme hover:-translate-y-0.5; }
+  .skip-link { @apply fixed left-4 top-3 z-[100] -translate-y-20 rounded-md bg-primary px-4 py-2 font-bold text-primary-foreground focus:translate-y-0; }
+}
+
+@layer base {
+  h1, h2, h3 { font-family: var(--font-heading, var(--font-sans)); letter-spacing: var(--heading-letter-spacing, -0.03em); }
+  h2 { @apply text-3xl font-black leading-tight tracking-[-.025em] text-foreground sm:text-4xl; }
+  h3 { @apply text-lg font-black leading-snug text-foreground; }
+  article p, section > p:not(.eyebrow) { @apply mt-3 leading-7 text-muted-foreground; }
+}
+
+[data-native-ad-slot]:empty { display: none; }
