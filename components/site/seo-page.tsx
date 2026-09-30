@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NativeAdSlot } from "@/components/integrations/native-ad-slot";
+import { ResponsiveBanner } from "@/components/integrations/responsive-banner";
 import type { SeoPageDefinition } from "@/config/types";
 import { getRelatedPages } from "@/content/registry";
 import { pageSchemas } from "@/lib/schema";
@@ -28,9 +29,10 @@ export function SeoPage({ page }: { page: SeoPageDefinition }) {
         <h1>{page.hero.heading}</h1>
         <p>{page.hero.lead}</p>
       </section>
+      <div className="wrap"><ResponsiveBanner /></div>
       <main className="wrap layout">
         <article>
-          <ArticleSections sections={page.sections} />
+          <ArticleSections sections={page.sections} earlyAd={<NativeAdSlot />} />
           {page.faq?.length ? (
             <section id="faq">
               <h2>FAQ</h2>
@@ -62,7 +64,6 @@ export function SeoPage({ page }: { page: SeoPageDefinition }) {
           ))}
         </aside>
       </main>
-      <div className="site-container"><NativeAdSlot /></div>
     </>
   );
 }

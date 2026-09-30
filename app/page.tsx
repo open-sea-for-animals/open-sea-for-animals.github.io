@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NativeAdSlot } from "@/components/integrations/native-ad-slot";
+import { ResponsiveBanner } from "@/components/integrations/responsive-banner";
 import { ArticleSections } from "@/components/site/article-sections";
 import { Faq } from "@/components/site/faq";
 import { JsonLd } from "@/components/site/json-ld";
@@ -52,19 +53,20 @@ export default function HomePage() {
               <img alt={coverAlt} src={assetPath(siteConfig.assets.cover)} />
             </div>
           </div>
-          <div className="blocks">
-            {entries.map((page, index) => (
-              <Link className="block" href={routePath(page.slug)} key={page.slug}>
-                <div className="num">{`0${index + 1}`}</div>
-                <b>{page.navLabel}</b>
-                {page.summary ? <p>{page.summary}</p> : null}
-              </Link>
-            ))}
-          </div>
         </section>
+        <ResponsiveBanner />
+        <div className="blocks">
+          {entries.map((page, index) => (
+            <Link className="block" href={routePath(page.slug)} key={page.slug}>
+              <div className="num">{`0${index + 1}`}</div>
+              <b>{page.navLabel}</b>
+              {page.summary ? <p>{page.summary}</p> : null}
+            </Link>
+          ))}
+        </div>
+        <NativeAdSlot />
         <ArticleSections sections={homePage.sections} />
       </main>
-      <div className="site-container"><NativeAdSlot /></div>
       {homePage.faq.length ? (
         <div className="site-container"><Faq items={homePage.faq} /></div>
       ) : null}

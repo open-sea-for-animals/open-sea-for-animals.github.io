@@ -22,4 +22,12 @@ html { scroll-behavior: smooth; }
   article p, section > p:not(.eyebrow) { @apply mt-3 leading-7 text-muted-foreground; }
 }
 
-[data-native-ad-slot]:empty { display: none; }
+.ad-banner { width: 100%; margin: 0 auto 24px; padding: 10px 0; text-align: center; }
+.ad-label { display: block; margin-bottom: 5px; color: #667188; font: 10px/1.2 Arial, sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+.ad-banner-space { display: flex; justify-content: center; min-height: 90px; width: 100%; }
+.ad-banner-frame { display: block; max-width: 100%; border: 0; overflow: hidden; }
+.ad-native { clear: both; margin: 26px auto; padding: 12px; max-width: 100%; overflow: hidden; border: 1px solid #CDD9EE; border-radius: 14px; background: #f5f8ff; text-align: center; }
+[data-native-ad-slot] { min-width: 0; max-width: 100%; overflow: hidden; }
+@media (max-width: 767px) {
+  .ad-banner-space { min-height: 50px; }
+}

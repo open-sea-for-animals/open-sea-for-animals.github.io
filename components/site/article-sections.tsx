@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Fragment } from "react";
+import type { ReactNode } from "react";
 import type { DataTable, PageSection } from "@/config/types";
 import { routePath } from "@/lib/urls";
 
@@ -28,14 +30,19 @@ function TableView({ table }: { table: DataTable }) {
   );
 }
 
-export function ArticleSections({ sections }: { sections: PageSection[] }) {
-  return sections.map((section) => (
+export function ArticleSections({ sections, earlyAd }: { sections: PageSection[]; earlyAd?: ReactNode }) {
+  return sections.map((section, sectionIndex) => (
     <section id={section.id} key={section.id}>
       <h2>{section.heading}</h2>
       {section.intro ? <p>{section.intro}</p> : null}
+      {sectionIndex === 0 && section.intro && !section.table ? earlyAd : null}
       {section.table ? <TableView table={section.table} /> : null}
+      {sectionIndex === 0 && section.table ? earlyAd : null}
       {section.paragraphs?.map((paragraph, index) => (
-        <p key={`${section.id}-p-${index}`}>{paragraph}</p>
+        <Fragment key={`${section.id}-p-${index}`}>
+          <p>{paragraph}</p>
+          {sectionIndex === 0 && !section.intro && !section.table && index === 0 ? earlyAd : null}
+        </Fragment>
       ))}
       {section.subsections?.map((subsection) => (
         <div key={subsection.heading}>
